@@ -1,0 +1,22 @@
+Split the problem into smaller, manageable ones:
+
+1. Represent a card and its properties - Create a data structure to store a card's suit and value.
+   Create a deck of cards - Generate a complete deck of cards, containing all suits and values.
+2. Shuffle the deck - Implement a shuffling algorithm to randomize the order of the cards in the deck.
+3. Draw cards from the deck - Create a function to draw a card from the deck.
+4. Represent a player and their hand of cards - Create a data structure to store a player's name and their hand (an array of cards).
+5. Calculate a player's score based on their hand - Implement a function to calculate the total score of a player's hand, taking into account the values of the cards and special rules for Aces.
+6. Determine when a player should stop drawing cards - Establish a stopping condition for each player, such as reaching a specific score (17 in the given case).
+   Implement a turn-based game flow - Create a function to handle the game flow, where each player takes turns drawing cards until their stopping condition is met.
+7. Determine the winner - Compare the final scores of both players and decide the winner based on the game rules (e.g., the player with the highest score without exceeding 21).
+8. Add user input - Implement a way to get user input for the players' names and display the results.
+
+Functions solving those small problems:
+1. The Card data structure and the Deck class handle the representation of cards and the creation of a complete deck.
+2. The shuffle() method in the Deck class shuffles the cards.
+3. The draw() method in the Deck class handles drawing cards from the deck.
+4. The Player interface represents a player and their hand of cards.
+5. The calculateScore() function calculates the total score of a player's hand.
+6. The playTurn() or drawCardsUntilScore() function implements the game flow, with players taking turns drawing cards until they reach their stopping conditions.
+7. The playGame() function determines the winner based on the players' final scores and game rules.
+8. The getPlayerName() function gets user input for the players' names, and the console.log() statements at the end of the playGame() function display the results.
