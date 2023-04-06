@@ -1,0 +1,12 @@
+{
+  "name": "coding-exercises",
+  "version": "1.0.0",
+  "description": "Thank you for your interest in the Guardian Product & Engineering Department's coding exercises. This repo contains exercises used in the Guardian's recruitment process. These exercises are used for all engineering roles, at all levels.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node answers/*.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
