@@ -4,12 +4,17 @@
   "description": "Coding exercises for the interview process",
   "main": "index.ts",
   "scripts": {
-    "start": "ts-node answers/warehouse-robot.ts"
+    "start": "ts-node answers/warehouse-robot.ts",
+    "format": "prettier --write \"**/**/*.{ts,js}\"",
+    "format:check": "prettier --check \"**/**/*.{ts,js}\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.8.7",
     "typescript": "5.0.3"
   },
   "dependencies": {

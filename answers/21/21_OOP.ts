@@ -16,7 +16,21 @@ class Deck {
   constructor() {
     this.cards = [];
     const suits: string[] = ['hearts', 'diamonds', 'clubs', 'spades'];
-    const values: string[] = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+    const values: string[] = [
+      'A',
+      '2',
+      '3',
+      '4',
+      '5',
+      '6',
+      '7',
+      '8',
+      '9',
+      '10',
+      'J',
+      'Q',
+      'K',
+    ];
 
     for (const suit of suits) {
       for (const value of values) {
@@ -72,7 +86,7 @@ function prompt(message: string): Promise<string> {
     output: process.stdout,
   });
 
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     rl.question(message, (answer: string) => {
       rl.close();
       resolve(answer);
@@ -93,7 +107,11 @@ async function createPlayer(playerNumber: number, deck: Deck): Promise<Player> {
   return player;
 }
 
-function drawCardsUntilScore(player: Player, deck: Deck, targetScore: number): void {
+function drawCardsUntilScore(
+  player: Player,
+  deck: Deck,
+  targetScore: number
+): void {
   while (calculateScore(player.hand) < targetScore) {
     const card = deck.draw();
     if (card) {
@@ -106,14 +124,22 @@ function playTurn(player1: Player, player2: Player, deck: Deck): Player | null {
   drawCardsUntilScore(player1, deck, 17);
 
   if (calculateScore(player1.hand) > 21) {
-    console.log(`${player1.name} has lost! Busting! With a score of ${calculateScore(player1.hand)}`);
+    console.log(
+      `${player1.name} has lost! Busting! With a score of ${calculateScore(
+        player1.hand
+      )}`
+    );
     return player2;
   }
 
   drawCardsUntilScore(player2, deck, calculateScore(player1.hand) + 1);
 
   if (calculateScore(player2.hand) > 21) {
-    console.log(`${player2.name} has lost! Busting! With a score of ${calculateScore(player2.hand)}`);
+    console.log(
+      `${player2.name} has lost! Busting! With a score of ${calculateScore(
+        player2.hand
+      )}`
+    );
     return player1;
   }
 

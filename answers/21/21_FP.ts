@@ -13,7 +13,21 @@ function createCard(suit: string, value: string): Card {
 
 function createDeck(): Deck {
   const suits: string[] = ['hearts', 'diamonds', 'clubs', 'spades'];
-  const values: string[] = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+  const values: string[] = [
+    'A',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '10',
+    'J',
+    'Q',
+    'K',
+  ];
 
   const deck: Deck = [];
   for (const suit of suits) {
@@ -74,7 +88,7 @@ function prompt(message: string): Promise<string> {
     output: process.stdout,
   });
 
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     rl.question(message, (answer: string) => {
       rl.close();
       resolve(answer);
@@ -87,7 +101,10 @@ async function getPlayerName(playerNumber: number): Promise<string> {
   return name;
 }
 
-async function createPlayer(playerNumber: number, deck: Deck): Promise<[Player, Deck]> {
+async function createPlayer(
+  playerNumber: number,
+  deck: Deck
+): Promise<[Player, Deck]> {
   const playerName = await getPlayerName(playerNumber);
   const [card1, deckAfterCard1] = drawCard(deck);
   const [card2, deckAfterCard2] = drawCard(deckAfterCard1);
@@ -100,7 +117,11 @@ async function createPlayer(playerNumber: number, deck: Deck): Promise<[Player, 
   return [player, deckAfterCard2];
 }
 
-function drawCardsUntilScore(player: Player, deck: Deck, targetScore: number): [Player, Deck] {
+function drawCardsUntilScore(
+  player: Player,
+  deck: Deck,
+  targetScore: number
+): [Player, Deck] {
   let updatedPlayer = { ...player };
   let updatedDeck = [...deck];
 
@@ -120,17 +141,29 @@ export async function playGame(): Promise<Player> {
   const [player1, deckAfterPlayer1] = await createPlayer(1, deck);
   const [player2, deckAfterPlayer2] = await createPlayer(2, deckAfterPlayer1);
 
-  const [updatedPlayer1, deckAfterTurn1] = drawCardsUntilScore(player1, deckAfterPlayer2, 17);
+  const [updatedPlayer1, deckAfterTurn1] = drawCardsUntilScore(
+    player1,
+    deckAfterPlayer2,
+    17
+  );
   const player1Hand = calculateScore(updatedPlayer1.hand);
   if (player1Hand > 21) {
-    console.log(`${player1.name} has lost! Busting! With a score of ${player1Hand}`)
+    console.log(
+      `${player1.name} has lost! Busting! With a score of ${player1Hand}`
+    );
     return player2;
   }
 
-  const [updatedPlayer2] = drawCardsUntilScore(player2, deckAfterTurn1, calculateScore(updatedPlayer1.hand) + 1);
+  const [updatedPlayer2] = drawCardsUntilScore(
+    player2,
+    deckAfterTurn1,
+    calculateScore(updatedPlayer1.hand) + 1
+  );
   const player2Hand = calculateScore(updatedPlayer2.hand);
   if (player2Hand > 21) {
-    console.log(`${player2.name} has lost! Busting! With a score of ${player2Hand}`)
+    console.log(
+      `${player2.name} has lost! Busting! With a score of ${player2Hand}`
+    );
     return updatedPlayer1;
   }
 
